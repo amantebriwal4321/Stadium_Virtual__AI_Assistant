@@ -73,6 +73,7 @@ app.add_middleware(
         "http://127.0.0.1:8080",
         "http://localhost:8000",
         "http://127.0.0.1:8000",
+        "https://amantebriwal4321.github.io",
         "null",  # file:// protocol sends Origin: null
     ],
     allow_credentials=True,
