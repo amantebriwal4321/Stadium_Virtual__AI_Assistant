@@ -1,0 +1,87 @@
+[
+  {
+    "id": "POL01",
+    "topic": "Bag Size Policy",
+    "content": "Bags larger than 12\" x 6\" x 12\" (30 cm x 15 cm x 30 cm) are not permitted inside the stadium. Clear bags up to that size and small clutch purses (4.5\" x 6.5\") are allowed. Oversized bags must be stored at the Bag Check facility near Gate A."
+  },
+  {
+    "id": "POL02",
+    "topic": "Prohibited Items",
+    "content": "The following items are strictly prohibited: weapons of any kind, fireworks, smoke bombs, laser pointers, drones, outside food and beverages (except one sealed water bottle up to 500ml), professional cameras with detachable lenses, large umbrellas, and any item that could be used as a projectile."
+  },
+  {
+    "id": "POL03",
+    "topic": "Re-entry Policy",
+    "content": "Re-entry is NOT permitted once you have exited the stadium. If you need to leave for a medical or family emergency, report to Guest Services at any gate for a special re-entry pass. This pass is issued at the discretion of stadium security."
+  },
+  {
+    "id": "POL04",
+    "topic": "Stroller and Baby Equipment",
+    "content": "Compact, collapsible strollers are permitted inside the stadium. They must be folded and stored under your seat during play. Non-collapsible strollers should be checked at the Family Zone storage area near Gate H. Diaper bags are exempt from the clear bag policy."
+  },
+  {
+    "id": "POL05",
+    "topic": "Accessibility Services",
+    "content": "The stadium provides wheelchair-accessible seating in all sections. Accessible gates are Gate A, Gate C, Gate D, Gate E, Gate F, and Gate H. Assistive listening devices are available at Guest Services. Service animals are permitted. Companion seating is provided adjacent to all accessible seats."
+  },
+  {
+    "id": "POL06",
+    "topic": "Medical Assistance",
+    "content": "Two fully staffed medical tents are located on the north side (near Gate B) and south side (near Gate D). First aid stations are at every gate. If you experience heat exhaustion symptoms — dizziness, nausea, rapid heartbeat — move to a shaded area, hydrate, and alert the nearest steward or text HELP to the stadium SMS number displayed on screens."
+  },
+  {
+    "id": "POL07",
+    "topic": "Lost and Found",
+    "content": "The Lost & Found desk is located near the Main Entrance (Gate A). During match days it is staffed from gate opening until 2 hours after the final whistle. Items can also be reported lost via the stadium website up to 30 days after the event."
+  },
+  {
+    "id": "POL08",
+    "topic": "Weather and Extreme Heat Policy",
+    "content": "In extreme heat (above 40°C / 104°F), additional cooling stations are activated, free water is distributed at all gates, and extended hydration breaks are added to the match schedule. If a thunderstorm warning is issued, fans in open seating areas will be directed to covered concourses by stewards."
+  },
+  {
+    "id": "POL09",
+    "topic": "Smoking Policy",
+    "content": "Smoking, including e-cigarettes and vaporizers, is prohibited in all areas of the stadium including concourses and restrooms. Designated smoking areas are located outside the stadium perimeter near Gate B and Gate E."
+  },
+  {
+    "id": "POL10",
+    "topic": "Alcohol Policy",
+    "content": "Alcohol sales are available at designated concession stands. Fans must be 21 years or older and present valid government-issued ID. Sales are cut off at the 75th minute of the match. No outside alcohol is permitted. Visibly intoxicated fans may be denied entry or ejected."
+  },
+  {
+    "id": "POL11",
+    "topic": "Photography and Recording",
+    "content": "Personal cameras and smartphones are permitted for personal, non-commercial use. Professional cameras with detachable lenses are prohibited without a media credential. Flash photography is discouraged during play as it may distract players."
+  },
+  {
+    "id": "POL12",
+    "topic": "Fan Code of Conduct",
+    "content": "All fans are expected to behave respectfully. Offensive, racist, or discriminatory language or gestures will result in immediate ejection and a potential ban. Report misconduct to any steward or text the stadium security number displayed on the big screen."
+  },
+  {
+    "id": "POL13",
+    "topic": "Seating Policy",
+    "content": "Fans must sit in their assigned seats as indicated on their ticket. Standing in aisles or stairways is a safety violation and will be addressed by stewards. If your view is obstructed, report to Guest Services for possible reassignment."
+  },
+  {
+    "id": "POL14",
+    "topic": "Transportation and Parking",
+    "content": "Parking lots open 4 hours before kickoff. Public transit (metro and shuttle buses) is strongly recommended as parking is limited. A free shuttle service runs from downtown transit hubs starting 3 hours before the match until 2 hours after the final whistle."
+  },
+  {
+    "id": "POL15",
+    "topic": "Wi-Fi and Connectivity",
+    "content": "Free stadium Wi-Fi is available: connect to 'FIFA2026-FreeWifi'. Bandwidth is shared among all fans so streaming video is discouraged. Charging stations are located near the Food Court (East) and Family Lounge."
+  },
+  {
+    "id": "POL16",
+    "topic": "Emergency Evacuation",
+    "content": "In the event of an emergency, follow the illuminated exit signs and steward instructions. Do NOT use elevators. Accessible evacuation areas are located at each accessible gate. Designated assembly points are in the outer parking lots — stewards will direct you. Remain calm and do not run."
+  },
+  {
+    "id": "POL17",
+    "topic": "Children and Minors Policy",
+    "content": "Children under 3 enter free but must sit on a guardian's lap. Children aged 3-12 require a valid child ticket. Unaccompanied minors under 16 are not permitted. Wristbands for children with parent contact info are available free at any Guest Services desk."
+  }
+]
