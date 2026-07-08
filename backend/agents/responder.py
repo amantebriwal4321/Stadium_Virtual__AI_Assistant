@@ -65,6 +65,135 @@ def _get_model() -> genai.GenerativeModel:
     )
 
 
+def _fallback_response(context: dict, language: str = "en") -> str:
+    intent = context.get("intent", "general_chat")
+    recommended_gates = context.get("recommended_gates", [])
+    warnings = context.get("safety_warnings", [])
+    nearest_amenity = context.get("nearest_amenity")
+    transit_info = context.get("transit_recommendation")
+    policies = context.get("policy_context", [])
+    temp = context.get("stadium_temperature_c", 32)
+    name = context.get("fan_profile", {}).get("name", "Fan")
+
+    # Multilingual headers/labels
+    translations = {
+        "en": {
+            "title": "⚽ **Setu Matchday Companion — Live Backup Mode**",
+            "gates_header": "🗺️ **Recommended Gates:**",
+            "warnings_header": "⚠️ **Safety Advisory:**",
+            "amenity_header": "📍 **Nearest Service Location:**",
+            "transit_header": "🚌 **Transit & Transport:**",
+            "policies_header": "📖 **Official Stadium Guidelines:**",
+            "fallback_chat": f"Hello {name}! I am Setu, your FIFA World Cup 2026 Companion. The current stadium temperature is {temp}°C.\n\nAsk me about finding the nearest restroom, least crowded gates, transport options, or stadium policies.",
+            "wheelchair": "♿ Wheelchair Accessible",
+            "density": "Crowd Density"
+        },
+        "hi": {
+            "title": "⚽ **सेतु मैचडे कंपेनियन — लाइव बैकअप मोड**",
+            "gates_header": "🗺️ **अनुशंसित गेट:**",
+            "warnings_header": "⚠️ **सुरक्षा चेतावनी:**",
+            "amenity_header": "📍 **निकटतम सेवा स्थान:**",
+            "transit_header": "🚌 **पारगमन और परिवहन:**",
+            "policies_header": "📖 **आधिकारिक स्टेडियम दिशानिर्देश:**",
+            "fallback_chat": f"नमस्ते {name}! मैं सेतु हूँ, आपका फीफा विश्व कप 2026 साथी। वर्तमान स्टेडियम का तापमान {temp}°C है।\n\nमुझसे निकटतम शौचालय, सबसे कम भीड़ वाले गेट, परिवहन विकल्प या स्टेडियम की नीतियों के बारे में पूछें।",
+            "wheelchair": "♿ व्हीलचेयर सुलभ",
+            "density": "भीड़ घनत्व"
+        },
+        "es": {
+            "title": "⚽ **Setu Companion — Modo de Respaldo en Vivo**",
+            "gates_header": "🗺️ **Puertas Recomendadas:**",
+            "warnings_header": "⚠️ **Aviso de Seguridad:**",
+            "amenity_header": "📍 **Ubicación del Servicio más Cercano:**",
+            "transit_header": "🚌 **Tránsito y Transporte:**",
+            "policies_header": "📖 **Pautas Oficiales del Estadio:**",
+            "fallback_chat": f"¡Hola {name}! Soy Setu, tu compañero de la Copa Mundial de la FIFA 2026. La temperatura actual del estadio es de {temp}°C.\n\nPregúntame cómo encontrar el baño más cercano, las puertas menos concurridas, las opciones de transporte o las políticas del estadio.",
+            "wheelchair": "♿ Accesible para silla de ruedas",
+            "density": "Densidad de la multitud"
+        },
+        "pt": {
+            "title": "⚽ **Setu Companion — Modo de Backup ao Vivo**",
+            "gates_header": "🗺️ **Portões Recomendados:**",
+            "warnings_header": "⚠️ **Aviso de Segurança:**",
+            "amenity_header": "📍 **Localização do Serviço mais Próximo:**",
+            "transit_header": "🚌 **Trânsito e Transporte:**",
+            "policies_header": "📖 **Diretrizes Oficiais do Estádio:**",
+            "fallback_chat": f"Olá {name}! Sou o Setu, seu companheiro da Copa do Mundo FIFA 2026. A temperatura atual do estádio é {temp}°C.\n\nPergunte-me sobre como encontrar o banheiro mais próximo, portões menos cheios, opções de transporte ou políticas do estádio.",
+            "wheelchair": "♿ Acessível para cadeira de rodas",
+            "density": "Densidade da multidão"
+        },
+        "fr": {
+            "title": "⚽ **Setu Companion — Mode de Secours en Direct**",
+            "gates_header": "🗺️ **Portes Recommandées:**",
+            "warnings_header": "⚠️ **Consignes de Sécurité:**",
+            "amenity_header": "📍 **Emplacement du Service le plus Proche:**",
+            "transit_header": "🚌 **Transport et Transit:**",
+            "policies_header": "📖 **Directives Oficielles du Stade:**",
+            "fallback_chat": f"Bonjour {name}! Je suis Setu, votre compagnon de la Coupe du Monde de la FIFA 2026. La température actuelle du stade est de {temp}°C.\n\nDemandez-moi pour trouver les toilettes les plus proches, les portes les moins encombrées, les options de transport ou les politiques du stade.",
+            "wheelchair": "♿ Accessible en fauteuil roulant",
+            "density": "Densité de la foule"
+        },
+        "ar": {
+            "title": "⚽ **مرافق سيتو ليوم المباراة — وضع النسخ الاحتياطي المباشر**",
+            "gates_header": "🗺️ **البوابات الموصى بها:**",
+            "warnings_header": "⚠️ **تنبيه السلامة:**",
+            "amenity_header": "📍 **موقع الخدمة الأقرب:**",
+            "transit_header": "🚌 **النقل والمواصلات:**",
+            "policies_header": "📖 **إرشادات الاستاد الرسمية:**",
+            "fallback_chat": f"مرحباً {name}! أنا سيتو، مرافقك في كأس العالم FIFA 2026. درجة حرارة الاستاد الحالية هي {temp} درجة مئوية.\n\nاسألني عن موقع أقرب دورة مياه، أو البوابات الأقل ازدحاماً، أو خيارات النقل، أو سياسات الاستاد.",
+            "wheelchair": "♿ متاح للكراسي المتحركة",
+            "density": "كثافة الحشد"
+        }
+    }
+
+    t = translations.get(language, translations["en"])
+    parts = [t["title"]]
+
+    # 1. Safety warnings
+    if warnings:
+        parts.append(f"{t['warnings_header']}\n" + "\n".join([f"- {w}" for w in warnings]))
+
+    # 2. Gate recommendations
+    if recommended_gates:
+        gate_lines = []
+        for g in recommended_gates:
+            line = f"- **{g['name']}**: {t['density']} {g['crowd_density']}%"
+            if g.get('distance'):
+                line += f" ({g['distance']}m)"
+            if g.get('wheelchair_accessible'):
+                line += f" | {t['wheelchair']}"
+            gate_lines.append(line)
+        parts.append(f"{t['gates_header']}\n" + "\n".join(gate_lines))
+
+    # 3. Amenity search
+    if nearest_amenity:
+        loc = nearest_amenity.get('location', {})
+        dist = nearest_amenity.get('distance_m', 0)
+        accessible = nearest_amenity.get('wheelchair_accessible', False)
+        type_str = nearest_amenity.get('type', 'service')
+        
+        line = f"- **{type_str.capitalize()}** at Section {nearest_amenity.get('section', '?')} (Coordinates: {loc.get('x', 50)}, {loc.get('y', 50)})"
+        if dist:
+            line += f" — approx. {dist}m away"
+        if accessible:
+            line += f" | {t['wheelchair']}"
+        parts.append(f"{t['amenity_header']}\n{line}")
+
+    # 4. Policies
+    if policies:
+        policy_lines = [f"- {p}" for p in policies]
+        parts.append(f"{t['policies_header']}\n" + "\n".join(policy_lines))
+
+    # 5. Transit info
+    if transit_info:
+        parts.append(f"{t['transit_header']}\n- {transit_info}")
+
+    # 6. Fallback general chat
+    if len(parts) == 1:
+        parts.append(t["fallback_chat"])
+
+    return "\n\n".join(parts)
+
+
 async def generate_response(context: dict, language: str = "en") -> str:
     """
     Generate a non-streaming response (used for trace logging / testing).
@@ -82,8 +211,8 @@ async def generate_response(context: dict, language: str = "en") -> str:
             ]
         )
         return response.text
-    except Exception as exc:
-        return f"I'm sorry, I encountered an issue generating a response. Please ask a steward for help. (Error: {type(exc).__name__})"
+    except Exception:
+        return _fallback_response(context, language)
 
 
 async def generate_response_stream(context: dict, language: str = "en") -> AsyncGenerator[str, None]:
@@ -107,5 +236,10 @@ async def generate_response_stream(context: dict, language: str = "en") -> Async
         for chunk in response:
             if chunk.text:
                 yield chunk.text
-    except Exception as exc:
-        yield f"I'm sorry, I encountered an issue. Please ask a steward for assistance. (Error: {type(exc).__name__})"
+    except Exception:
+        # Graceful rule-based fallback streaming
+        fallback_text = _fallback_response(context, language)
+        # Yield the response in small chunks to simulate streaming
+        chunk_size = 12
+        for i in range(0, len(fallback_text), chunk_size):
+            yield fallback_text[i:i+chunk_size]
