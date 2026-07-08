@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Setu — AI Stadium Companion for FIFA World Cup 2026. Real-time multilingual navigation, crowd safety, and accessibility assistance powered by GenAI.">
+  <meta name="theme-color" content="#0F3D2E">
+  <title>Setu — AI Stadium Companion | FIFA World Cup 2026</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+</head>
+<body>
+  <!-- Skip-to-content for keyboard/screen-reader users -->
+  <a href="#chat-input" class="skip-link" id="skip-link">Skip to chat input</a>
+
+  <!-- ═══════════════ LOADING SCREEN ═══════════════ -->
+  <div class="loader-overlay" id="loader-overlay">
+    <div class="loader-inner">
+      <div class="loader-logo">SETU</div>
+      <div class="loader-subtitle">AI STADIUM COMPANION</div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <div class="loader-counter" id="loader-counter">0%</div>
+      <div class="loader-status" id="loader-status">INITIALISING SYSTEMS...</div>
+    </div>
+    <div class="loader-corner loader-corner--tl">FIFA WC 2026</div>
+    <div class="loader-corner loader-corner--br">MULTI-AGENT GenAI</div>
+  </div>
+
+  <!-- ═══════════════ AMBIENT PARTICLES ═══════════════ -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- ═══════════════ MAIN APP ═══════════════ -->
+  <div class="app-wrapper" id="app-wrapper" style="opacity:0">
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header class="app-header" role="banner">
+      <div class="header-brand">
+        <div class="logo-icon" aria-hidden="true">⚽</div>
+        <div>
+          <h1>SETU <span class="subtitle-hindi">सेतु</span></h1>
+          <span class="subtitle">STADIUM OPERATIONS PARTNER &middot; FIFA WC 2026</span>
+        </div>
+      </div>
+      <div class="header-controls">
+        <!-- Live temperature display -->
+        <div class="temp-display" id="temp-display" aria-label="Current stadium temperature" title="Stadium temperature">
+          <span class="temp-icon">🌡️ Stadium Temp:</span>
+          <span class="temp-value" id="temp-value">32°C</span>
+        </div>
+        <!-- Language selector -->
+        <div class="select-wrap">
+          <label for="language-select" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Response language</label>
+          <select id="language-select" aria-label="Select response language">
+            <option value="en">🇬🇧 EN</option>
+            <option value="hi">🇮🇳 HI</option>
+            <option value="es">🇪🇸 ES</option>
+            <option value="pt">🇧🇷 PT</option>
+            <option value="fr">🇫🇷 FR</option>
+            <option value="ar">🇸🇦 AR</option>
+          </select>
+        </div>
+        <!-- Accessibility toggle -->
+        <button class="btn btn-icon" id="a11y-toggle" aria-label="Toggle accessibility mode" title="Accessibility mode">♿</button>
+        <!-- Sidebar toggle (mobile) -->
+        <button class="btn btn-icon sidebar-toggle-btn" id="sidebar-toggle" aria-label="Toggle sidebar panel" title="Toggle panel">☰</button>
+      </div>
+    </header>
+
+    <!-- ═══════════════ HERO / WELCOME SECTION ═══════════════ -->
+    <section class="hero-section" id="hero-section">
+      <div class="hero-content">
+        <div class="hero-label anim-reveal" data-delay="0">OFFICIAL MATCHDAY COMPANION</div>
+        <div class="hero-title">
+          <span class="hero-word anim-reveal" data-delay="100">NAVIGATE.</span>
+          <span class="hero-word anim-reveal" data-delay="250">CONNECT.</span>
+          <span class="hero-word anim-reveal" data-delay="400">EXPERIENCE.</span>
+        </div>
+        <p class="hero-desc anim-reveal" data-delay="550">Your official stadium companion for the FIFA World Cup 2026. Real-time crowd navigation, multilingual support, accessibility guidance, and stadium operations safety &mdash; all in one clean interface.</p>
+        <button class="hero-cta anim-reveal" data-delay="700" id="hero-enter-btn">
+          <span>ENTER STADIUM</span>
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item anim-reveal" data-delay="600">
+          <div class="stat-number" id="stat-gates">8</div>
+          <div class="stat-label">LIVE GATES</div>
+        </div>
+        <div class="stat-item anim-reveal" data-delay="700">
+          <div class="stat-number" id="stat-languages">6</div>
+          <div class="stat-label">LANGUAGES</div>
+        </div>
+        <div class="stat-item anim-reveal" data-delay="800">
+          <div class="stat-number" id="stat-agents">5</div>
+          <div class="stat-label">OPERATIONAL PIPELINES</div>
+        </div>
+        <div class="stat-item anim-reveal" data-delay="900">
+          <div class="stat-number">LOCAL</div>
+          <div class="stat-label">VECTOR RAG</div>
+        </div>
+      </div>
+      <div class="hero-scroll-hint">
+        <span>SCROLL</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+    <main class="app-main" id="main-content">
+
+      <!-- ─── Chat Panel ─── -->
+      <section class="chat-panel" role="region" aria-label="Chat conversation">
+        <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-label="Chat messages">
+          <!-- Welcome screen (shown when no messages yet) -->
+          <div class="welcome-screen" id="welcome-screen">
+            <div class="welcome-icon" aria-hidden="true">⚽</div>
+            <h2>Welcome to Setu</h2>
+            <p>Your official matchday companion for the FIFA World Cup 2026. Ask about directions, gate crowd density, safety alerts, or stadium policies.</p>
+            <div class="quick-actions" role="group" aria-label="Quick action suggestions">
+              <button class="quick-action-btn" data-query="Where is the nearest restroom?" aria-label="Ask about nearest restroom">
+                <span class="qa-icon">🚻</span>
+                <span>Nearest restroom</span>
+              </button>
+              <button class="quick-action-btn" data-query="Which gate has the lowest crowd density?" aria-label="Ask about least crowded gate">
+                <span class="qa-icon">🚪</span>
+                <span>Least crowded gate</span>
+              </button>
+              <button class="quick-action-btn" data-query="What is the bag size policy?" aria-label="Ask about bag policy">
+                <span class="qa-icon">👜</span>
+                <span>Bag size policy</span>
+              </button>
+              <button class="quick-action-btn" data-query="Find me wheelchair accessible food options" aria-label="Ask about accessible food">
+                <span class="qa-icon">♿</span>
+                <span>Accessible food</span>
+              </button>
+              <button class="quick-action-btn" data-query="How do I get to the stadium by public transport?" aria-label="Ask about transport">
+                <span class="qa-icon">🚌</span>
+                <span>Transport options</span>
+              </button>
+              <button class="quick-action-btn" data-query="Where is the medical tent?" aria-label="Ask about medical tent">
+                <span class="qa-icon">🏥</span>
+                <span>Medical tent</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat input -->
+        <div class="chat-input-area">
+          <div class="input-row">
+            <button class="mic-btn" id="mic-btn" aria-label="Voice input — press to speak" title="Voice input">🎤</button>
+            <input type="text" id="chat-input" placeholder="Ask SETU anything about today's match, gates, crowd, accessibility, or stadium services..." aria-label="Type your message" autocomplete="off">
+            <button class="send-btn" id="send-btn" aria-label="Send message" title="Send" disabled>⚽</button>
+          </div>
+          <div class="input-info">
+            <span id="voice-status"></span>
+            <span><span class="status-dot online"></span> Connected</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── Sidebar ─── -->
+      <aside class="sidebar" id="sidebar" role="complementary" aria-label="Stadium map, controls, and trace viewer">
+        <div class="sidebar-tabs" role="tablist" aria-label="Sidebar panels">
+          <button class="sidebar-tab active" role="tab" data-tab="map" aria-selected="true" id="tab-map">MAP ⚽</button>
+          <button class="sidebar-tab" role="tab" data-tab="control" aria-selected="false" id="tab-control">CONTROL 🎮</button>
+          <button class="sidebar-tab" role="tab" data-tab="trace" aria-selected="false" id="tab-trace">TRACE 📊</button>
+          <!-- Mobile Close Button -->
+          <button class="sidebar-close-btn" id="sidebar-close" aria-label="Close panel" title="Close panel">✕</button>
+        </div>
+
+        <div class="sidebar-content">
+
+          <!-- ─── MAP TAB ─── -->
+          <div class="tab-content" id="panel-map" role="tabpanel" aria-labelledby="tab-map">
+            <div class="fan-profile-selector">
+              <h4>👤 FAN PROFILE</h4>
+              <div class="fan-cards" id="fan-cards">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+            <div class="map-container">
+              <div class="map-canvas-wrap">
+                <svg id="stadium-map" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stadium map showing gates and crowd density">
+                  <!-- Stadium outline -->
+                  <ellipse cx="50" cy="50" rx="42" ry="38" fill="none" stroke="var(--clr-brand)" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.3"/>
+                  <!-- Field -->
+                  <rect x="30" y="32" width="40" height="36" rx="3" fill="var(--clr-brand)" fill-opacity="0.05" stroke="var(--clr-success)" stroke-width="0.4"/>
+                  <!-- Center circle -->
+                  <circle cx="50" cy="50" r="6" fill="none" stroke="var(--clr-success)" stroke-width="0.3"/>
+                  <!-- Center line -->
+                  <line x1="30" y1="50" x2="70" y2="50" stroke="var(--clr-success)" stroke-width="0.2"/>
+                  <!-- Gates -->
+                  <g id="map-gates"></g>
+                  <g id="map-route"></g>
+                  <g id="map-amenities"></g>
+                </svg>
+              </div>
+              <div class="map-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:var(--clr-crowd-low)"></div> &lt;50%</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--clr-crowd-medium)"></div> 50-85%</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--clr-crowd-high)"></div> &gt;85%</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--clr-closed)"></div> Closed</div>
+              </div>
+            </div>
+
+            <!-- Live Telemetry Panel -->
+            <div class="telemetry-card" id="stadium-telemetry">
+              <div class="telemetry-header">
+                <span class="telemetry-title">📡 Live Stadium Telemetry</span>
+                <span class="telemetry-status">ONLINE</span>
+              </div>
+              <div class="telemetry-grid">
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Active Attendance</span>
+                  <span class="telemetry-value" id="telemetry-attendance">68,450 / 72,000</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Operational Safety</span>
+                  <span class="telemetry-value" id="telemetry-safety" style="color:var(--clr-success)">SECURE</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Safest Access Point</span>
+                  <span class="telemetry-value recommend" id="telemetry-recommend">Calculating...</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Thermal Index</span>
+                  <span class="telemetry-value" id="telemetry-thermal" style="color:var(--clr-success)">Normal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─── CONTROL TAB ─── -->
+          <div class="tab-content control-panel" id="panel-control" role="tabpanel" aria-labelledby="tab-control">
+            <div class="control-section">
+              <h4>🎚️ GATE CROWD DENSITY</h4>
+              <div id="gate-sliders">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+            <div class="control-section">
+              <h4>🔒 GATE OPEN/CLOSE</h4>
+              <div id="gate-toggles">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+            <div class="control-section">
+              <h4>🌡️ STADIUM TEMPERATURE</h4>
+              <div class="gate-control">
+                <span class="gate-name">Temp</span>
+                <input type="range" min="10" max="50" value="32" step="1"
+                       aria-label="Stadium temperature in Celsius"
+                       id="temp-slider">
+                <span class="density-value" id="temp-slider-value" style="color:#eab308">32°C</span>
+              </div>
+              <p style="font-size:0.65rem;color:var(--text-muted);margin-top:var(--space-xs);">35°C+ = heat advisory · 42°C+ = extreme heat alert</p>
+            </div>
+            <div class="control-section">
+              <h4>⚠️ EMERGENCY</h4>
+              <button class="btn btn-danger" id="emergency-btn" style="width:100%" aria-label="Trigger emergency simulation">🚨 TRIGGER EMERGENCY</button>
+              <p style="font-size:0.65rem;color:var(--text-muted);margin-top:var(--space-xs);">Simulates an emergency — the next query will activate the emergency protocol.</p>
+            </div>
+          </div>
+
+          <!-- ─── TRACE TAB ─── -->
+          <div class="tab-content" id="panel-trace" role="tabpanel" aria-labelledby="tab-trace" style="display:none">
+            <div id="trace-list">
+              <p style="color:var(--text-muted);font-size:0.8rem;text-align:center;padding:var(--space-xl);">No traces yet. Send a message to see the agent pipeline trace.</p>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Emergency overlay (hidden by default) -->
+  <div class="emergency-overlay" id="emergency-overlay" style="display:none" role="alert" aria-live="assertive">
+    <div class="emergency-box">
+      <h2>🚨 EMERGENCY PROTOCOL</h2>
+      <p id="emergency-message">Stay calm. Follow illuminated exit signs. Do NOT use elevators. Move to the nearest open gate.</p>
+      <button class="btn" style="margin-top:var(--space-md)" onclick="document.getElementById('emergency-overlay').style.display='none'">Dismiss</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
