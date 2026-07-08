@@ -1,0 +1,74 @@
+[
+  {
+    "id": "G1",
+    "name": "Gate A – Main Entrance",
+    "location": { "x": 50, "y": 10 },
+    "crowd_density": 45,
+    "wheelchair_accessible": true,
+    "status": "open",
+    "distance_from_common_entry": 0.2
+  },
+  {
+    "id": "G2",
+    "name": "Gate B – North Stand",
+    "location": { "x": 85, "y": 30 },
+    "crowd_density": 72,
+    "wheelchair_accessible": false,
+    "status": "open",
+    "distance_from_common_entry": 0.5
+  },
+  {
+    "id": "G3",
+    "name": "Gate C – East Wing",
+    "location": { "x": 90, "y": 60 },
+    "crowd_density": 30,
+    "wheelchair_accessible": true,
+    "status": "open",
+    "distance_from_common_entry": 0.7
+  },
+  {
+    "id": "G4",
+    "name": "Gate D – South Stand",
+    "location": { "x": 50, "y": 90 },
+    "crowd_density": 88,
+    "wheelchair_accessible": true,
+    "status": "open",
+    "distance_from_common_entry": 0.9
+  },
+  {
+    "id": "G5",
+    "name": "Gate E – West Wing",
+    "location": { "x": 10, "y": 60 },
+    "crowd_density": 15,
+    "wheelchair_accessible": true,
+    "status": "open",
+    "distance_from_common_entry": 0.6
+  },
+  {
+    "id": "G6",
+    "name": "Gate F – VIP Entrance",
+    "location": { "x": 10, "y": 30 },
+    "crowd_density": 55,
+    "wheelchair_accessible": true,
+    "status": "open",
+    "distance_from_common_entry": 0.4
+  },
+  {
+    "id": "G7",
+    "name": "Gate G – Service Tunnel",
+    "location": { "x": 50, "y": 50 },
+    "crowd_density": 20,
+    "wheelchair_accessible": false,
+    "status": "closed",
+    "distance_from_common_entry": 0.8
+  },
+  {
+    "id": "G8",
+    "name": "Gate H – Family Zone",
+    "location": { "x": 30, "y": 85 },
+    "crowd_density": 40,
+    "wheelchair_accessible": true,
+    "status": "open",
+    "distance_from_common_entry": 0.75
+  }
+]
