@@ -55,7 +55,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Setu — AI Stadium Companion",
     description="Multi-agent GenAI assistant for FIFA World Cup 2026 fans.",
-    version="1.0.0",
+    version="1.0.1",
     lifespan=lifespan,
 )
 
@@ -110,7 +110,7 @@ class SimulateRequest(BaseModel):
 @app.get("/health")
 async def health():
     """Basic healthcheck endpoint."""
-    return {"status": "healthy", "service": "setu", "version": "1.0.0"}
+    return {"status": "healthy", "service": "setu", "version": "1.0.1"}
 
 
 @app.post("/chat")
