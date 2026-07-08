@@ -1,0 +1,72 @@
+[
+  {
+    "id": "A1",
+    "name": "Restroom Block A",
+    "type": "restroom",
+    "location": { "x": 30, "y": 20 },
+    "wheelchair_accessible": true
+  },
+  {
+    "id": "A2",
+    "name": "Restroom Block B",
+    "type": "restroom",
+    "location": { "x": 70, "y": 75 },
+    "wheelchair_accessible": false
+  },
+  {
+    "id": "A3",
+    "name": "Medical Tent – North",
+    "type": "medical",
+    "location": { "x": 60, "y": 15 },
+    "wheelchair_accessible": true
+  },
+  {
+    "id": "A4",
+    "name": "Medical Tent – South",
+    "type": "medical",
+    "location": { "x": 40, "y": 85 },
+    "wheelchair_accessible": true
+  },
+  {
+    "id": "A5",
+    "name": "Food Court – East",
+    "type": "food",
+    "location": { "x": 85, "y": 50 },
+    "wheelchair_accessible": true
+  },
+  {
+    "id": "A6",
+    "name": "Street Food Stall – West",
+    "type": "food",
+    "location": { "x": 15, "y": 50 },
+    "wheelchair_accessible": false
+  },
+  {
+    "id": "A7",
+    "name": "Prayer Room – Central",
+    "type": "prayer_room",
+    "location": { "x": 50, "y": 45 },
+    "wheelchair_accessible": true
+  },
+  {
+    "id": "A8",
+    "name": "Merchandise Store",
+    "type": "merchandise",
+    "location": { "x": 45, "y": 15 },
+    "wheelchair_accessible": true
+  },
+  {
+    "id": "A9",
+    "name": "Family Lounge",
+    "type": "family_area",
+    "location": { "x": 25, "y": 80 },
+    "wheelchair_accessible": true
+  },
+  {
+    "id": "A10",
+    "name": "Lost & Found Desk",
+    "type": "lost_and_found",
+    "location": { "x": 50, "y": 10 },
+    "wheelchair_accessible": true
+  }
+]
