@@ -22,7 +22,10 @@
   //  CONFIGURATION
   // ═══════════════════════════════════════════════════════════════════════
 
-  const API_BASE = 'http://127.0.0.1:8000';
+  // Auto-detect: use localhost in development, deployed backend in production
+  const API_BASE = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
+    ? 'http://127.0.0.1:8000'
+    : 'https://setu-stadium-api.onrender.com';
   let sessionId = 'session_' + Date.now().toString(36);
 
   // ═══════════════════════════════════════════════════════════════════════
