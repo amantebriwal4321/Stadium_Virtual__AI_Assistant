@@ -1,0 +1,34 @@
+[
+  {
+    "id": "FAN1",
+    "name": "Maria",
+    "language": "pt",
+    "needs_wheelchair": true,
+    "location": { "x": 45, "y": 20 },
+    "description": "Brazilian football fan, wheelchair user, speaks Portuguese. First major tournament."
+  },
+  {
+    "id": "FAN2",
+    "name": "Raj",
+    "language": "hi",
+    "needs_wheelchair": false,
+    "location": { "x": 60, "y": 40 },
+    "description": "Indian cricket-turned-football fan, speaks Hindi, first-time visitor to a FIFA venue."
+  },
+  {
+    "id": "FAN3",
+    "name": "Tom",
+    "language": "en",
+    "needs_wheelchair": false,
+    "location": { "x": 30, "y": 70 },
+    "description": "American fan, speaks English, has an urgent medical question about heat exhaustion."
+  },
+  {
+    "id": "FAN4",
+    "name": "Fatima",
+    "language": "ar",
+    "needs_wheelchair": false,
+    "location": { "x": 75, "y": 55 },
+    "description": "Moroccan fan, speaks Arabic, looking for a prayer room and halal food nearby."
+  }
+]
