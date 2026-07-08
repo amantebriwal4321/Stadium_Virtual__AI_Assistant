@@ -1,5 +1,5 @@
 """
-app.py — FastAPI application for Setu.
+app.py — FastAPI application for Unity26.
 
 Endpoints:
   POST /chat      — main chat endpoint (streamed agent response)
@@ -43,17 +43,17 @@ from backend.trace_logger import get_recent_traces
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Startup: build/load RAG index. Shutdown: nothing special needed."""
-    print("[Setu] Initialising RAG knowledge base...")
+    print("[Unity26] Initialising RAG knowledge base...")
     try:
         init_rag()
-        print("[Setu] RAG index ready.")
+        print("[Unity26] RAG index ready.")
     except Exception as exc:
-        print(f"[Setu] RAG init failed (non-fatal): {exc}")
+        print(f"[Unity26] RAG init failed (non-fatal): {exc}")
     yield
 
 
 app = FastAPI(
-    title="Setu — AI Stadium Companion",
+    title="Unity26 — AI Stadium Companion",
     description="Multi-agent GenAI assistant for FIFA World Cup 2026 fans.",
     version="1.0.1",
     lifespan=lifespan,
@@ -110,7 +110,7 @@ class SimulateRequest(BaseModel):
 @app.get("/health")
 async def health():
     """Basic healthcheck endpoint."""
-    return {"status": "healthy", "service": "setu", "version": "1.0.1"}
+    return {"status": "healthy", "service": "unity26", "version": "1.0.1"}
 
 
 @app.post("/chat")

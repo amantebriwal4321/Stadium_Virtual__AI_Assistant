@@ -1,6 +1,6 @@
-# 🌉 Setu — AI Stadium Companion for FIFA World Cup 2026
+# 🏟️ Unity26 — AI Stadium Companion for FIFA World Cup 2026
 
-**Setu** (Sanskrit/Hindi for "bridge") is a GenAI-powered multi-agent stadium assistant designed for international fans attending the **FIFA World Cup 2026**. 
+**Unity26** is a GenAI-powered multi-agent stadium assistant designed for international fans attending the **FIFA World Cup 2026**. 
 
 Built to run with **zero paid infrastructure** using the Google Gemini free-tier API, the application features an advanced multi-agent orchestrator, real-time local RAG capabilities, deterministic safety guardrails, and an immersive, KPRverse-inspired responsive frontend UI.
 
@@ -21,7 +21,7 @@ Built to run with **zero paid infrastructure** using the Google Gemini free-tier
 
 ## 🌟 Project Overview
 
-During a major tournament like the FIFA World Cup 2026, tens of thousands of international fans encounter language barriers, crowded gates, unfamiliar safety protocols, and complex stadium policies. **Setu** bridges these gaps by providing:
+During a major tournament like the FIFA World Cup 2026, tens of thousands of international fans encounter language barriers, crowded gates, unfamiliar safety protocols, and complex stadium policies. **Unity26** bridges these gaps by providing:
 * **Multilingual support** across 6 major fan languages.
 * **Deterministic crowd safety navigation** to reroute fans away from unsafe/blocked gates.
 * **Real-time environmental evaluation** (e.g., heat warnings and advisories).
@@ -32,7 +32,7 @@ During a major tournament like the FIFA World Cup 2026, tens of thousands of int
 
 ## 🎯 What It Actually Does
 
-Setu acts as a conversational companion that updates dynamically based on the live stadium state.
+Unity26 acts as a conversational companion that updates dynamically based on the live stadium state.
 
 1. **Intelligent Query Routing:** Determines if a fan is looking for directions, policies, transit advice, or in need of emergency assistance.
 2. **Safe Navigation Recommendations:** Scores gates based on distance, wheelchair accessibility, and live crowd density. If a gate's density exceeds **85%**, the safety agent vetoes it and redirects the fan.
@@ -44,7 +44,7 @@ Setu acts as a conversational companion that updates dynamically based on the li
 
 ## ⚙️ Architecture & Pipeline Flow
 
-Setu implements a **deterministic orchestrator loop** designed to run efficiently with a maximum of **2 Gemini API calls** per query:
+Unity26 implements a **deterministic orchestrator loop** designed to run efficiently with a maximum of **2 Gemini API calls** per query:
 
 ```
 [User Query]
@@ -192,7 +192,7 @@ Run the FastAPI application with Uvicorn:
 ```powershell
 uvicorn backend.app:app --reload --host 127.0.0.1 --port 8000
 ```
-On startup, Setu will download the embedding model, build the local Chroma database, index the stadium policy JSON, and bind to `http://127.0.0.1:8000`.
+On startup, Unity26 will download the embedding model, build the local Chroma database, index the stadium policy JSON, and bind to `http://127.0.0.1:8000`.
 
 ### 6. Launch the Frontend
 Open the `frontend/index.html` file using your web server of choice. For the best experience (avoiding browser file-system security blockages), serve it locally using a utility like **Live Server** (Port 5500) or python's HTTP server:

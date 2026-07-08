@@ -26,7 +26,7 @@ VALID_INTENTS = [
 ]
 
 _SYSTEM_PROMPT = """\
-You are the ROUTER for Setu, an AI stadium assistant for FIFA World Cup 2026.
+You are the ROUTER for Unity26, an AI stadium assistant for FIFA World Cup 2026.
 
 Your ONLY job is to classify the user's intent and extract relevant entities.
 Respond with valid JSON matching this schema — NO extra text, NO markdown fences:

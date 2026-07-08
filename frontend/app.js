@@ -1,5 +1,5 @@
 /**
- * app.js — Setu Frontend Application
+ * app.js — Unity26 Frontend Application
  *
  * Handles:
  *  - Cinematic loading screen (KPRverse-inspired)
@@ -521,7 +521,7 @@
     msg.innerHTML = `
       <div class="message-avatar" aria-hidden="true">⚽</div>
       <div class="message-content">
-        <div class="typing-indicator" aria-label="Setu is thinking">
+        <div class="typing-indicator" aria-label="Unity26 is thinking">
           <span></span><span></span><span></span>
         </div>
       </div>`;

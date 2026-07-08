@@ -1,5 +1,5 @@
 """
-retriever.py — RAG Knowledge Base for Setu.
+retriever.py — RAG Knowledge Base for Unity26.
 
 Lightweight keyword-based retriever that works within Render's 512MB free tier.
 Uses TF-IDF-style keyword matching against stadium policy documents.
@@ -169,7 +169,7 @@ def _init_chromadb() -> None:
         _initialised = True
 
     except (ImportError, MemoryError, Exception) as e:
-        print(f"[Setu] ChromaDB unavailable ({type(e).__name__}), falling back to lightweight RAG")
+        print(f"[Unity26] ChromaDB unavailable ({type(e).__name__}), falling back to lightweight RAG")
         global _USE_LIGHTWEIGHT
         _USE_LIGHTWEIGHT = True
         _init_lightweight()

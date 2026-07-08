@@ -1,5 +1,5 @@
 """
-guardrails.py — Security layer for Setu.
+guardrails.py — Security layer for Unity26.
 
 Provides:
   1. Input sanitisation — blocks prompt-injection patterns before any text

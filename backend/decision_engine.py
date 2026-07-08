@@ -1,5 +1,5 @@
 """
-decision_engine.py — Deterministic core logic for Setu.
+decision_engine.py — Deterministic core logic for Unity26.
 
 Pure Python, fully unit-testable. NO LLM calls inside this module.
 Scores and ranks routes/gates for fans, finds nearest amenities,

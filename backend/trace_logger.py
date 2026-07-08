@@ -1,5 +1,5 @@
 """
-trace_logger.py — Observability for Setu.
+trace_logger.py — Observability for Unity26.
 
 Every query appends a JSON line to ``trace_log.jsonl`` recording the full
 pipeline trace: timestamp, fan profile, router output, safety-agent decision,

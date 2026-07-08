@@ -33,7 +33,7 @@ _LANG_MAP = {
 def _build_system_prompt(language_code: str) -> str:
     lang = _LANG_MAP.get(language_code, "English")
     return f"""\
-You are Setu (सेतु), a friendly AI stadium companion for FIFA World Cup 2026.
+You are Unity26 (यूनिटी26), a friendly AI stadium companion for FIFA World Cup 2026.
 You are responding to a fan who speaks {lang}.  Respond ONLY in {lang}.
 
 STRICT GROUNDING RULES — VIOLATION IS UNACCEPTABLE:
@@ -78,68 +78,68 @@ def _fallback_response(context: dict, language: str = "en") -> str:
     # Multilingual headers/labels
     translations = {
         "en": {
-            "title": "⚽ **Setu Matchday Companion — Live Backup Mode**",
+            "title": "⚽ **Unity26 Matchday Companion — Live Backup Mode**",
             "gates_header": "🗺️ **Recommended Gates:**",
             "warnings_header": "⚠️ **Safety Advisory:**",
             "amenity_header": "📍 **Nearest Service Location:**",
             "transit_header": "🚌 **Transit & Transport:**",
             "policies_header": "📖 **Official Stadium Guidelines:**",
-            "fallback_chat": f"Hello {name}! I am Setu, your FIFA World Cup 2026 Companion. The current stadium temperature is {temp}°C.\n\nAsk me about finding the nearest restroom, least crowded gates, transport options, or stadium policies.",
+            "fallback_chat": f"Hello {name}! I am Unity26, your FIFA World Cup 2026 Companion. The current stadium temperature is {temp}°C.\n\nAsk me about finding the nearest restroom, least crowded gates, transport options, or stadium policies.",
             "wheelchair": "♿ Wheelchair Accessible",
             "density": "Crowd Density"
         },
         "hi": {
-            "title": "⚽ **सेतु मैचडे कंपेनियन — लाइव बैकअप मोड**",
+            "title": "⚽ **यूनिटी26 मैचडे कंपेनियन — लाइव बैकअप मोड**",
             "gates_header": "🗺️ **अनुशंसित गेट:**",
             "warnings_header": "⚠️ **सुरक्षा चेतावनी:**",
             "amenity_header": "📍 **निकटतम सेवा स्थान:**",
             "transit_header": "🚌 **पारगमन और परिवहन:**",
             "policies_header": "📖 **आधिकारिक स्टेडियम दिशानिर्देश:**",
-            "fallback_chat": f"नमस्ते {name}! मैं सेतु हूँ, आपका फीफा विश्व कप 2026 साथी। वर्तमान स्टेडियम का तापमान {temp}°C है।\n\nमुझसे निकटतम शौचालय, सबसे कम भीड़ वाले गेट, परिवहन विकल्प या स्टेडियम की नीतियों के बारे में पूछें।",
+            "fallback_chat": f"नमस्ते {name}! मैं यूनिटी26 हूँ, आपका फीफा विश्व कप 2026 साथी। वर्तमान स्टेडियम का तापमान {temp}°C है।\n\nमुझसे निकटतम शौचालय, सबसे कम भीड़ वाले गेट, परिवहन विकल्प या स्टेडियम की नीतियों के बारे में पूछें।",
             "wheelchair": "♿ व्हीलचेयर सुलभ",
             "density": "भीड़ घनत्व"
         },
         "es": {
-            "title": "⚽ **Setu Companion — Modo de Respaldo en Vivo**",
+            "title": "⚽ **Unity26 Companion — Modo de Respaldo en Vivo**",
             "gates_header": "🗺️ **Puertas Recomendadas:**",
             "warnings_header": "⚠️ **Aviso de Seguridad:**",
             "amenity_header": "📍 **Ubicación del Servicio más Cercano:**",
             "transit_header": "🚌 **Tránsito y Transporte:**",
             "policies_header": "📖 **Pautas Oficiales del Estadio:**",
-            "fallback_chat": f"¡Hola {name}! Soy Setu, tu compañero de la Copa Mundial de la FIFA 2026. La temperatura actual del estadio es de {temp}°C.\n\nPregúntame cómo encontrar el baño más cercano, las puertas menos concurridas, las opciones de transporte o las políticas del estadio.",
+            "fallback_chat": f"¡Hola {name}! Soy Unity26, tu compañero de la Copa Mundial de la FIFA 2026. La temperatura actual del estadio es de {temp}°C.\n\nPregúntame cómo encontrar el baño más cercano, las puertas menos concurridas, las opciones de transporte o las políticas del estadio.",
             "wheelchair": "♿ Accesible para silla de ruedas",
             "density": "Densidad de la multitud"
         },
         "pt": {
-            "title": "⚽ **Setu Companion — Modo de Backup ao Vivo**",
+            "title": "⚽ **Unity26 Companion — Modo de Backup ao Vivo**",
             "gates_header": "🗺️ **Portões Recomendados:**",
             "warnings_header": "⚠️ **Aviso de Segurança:**",
             "amenity_header": "📍 **Localização do Serviço mais Próximo:**",
             "transit_header": "🚌 **Trânsito e Transporte:**",
             "policies_header": "📖 **Diretrizes Oficiais do Estádio:**",
-            "fallback_chat": f"Olá {name}! Sou o Setu, seu companheiro da Copa do Mundo FIFA 2026. A temperatura atual do estádio é {temp}°C.\n\nPergunte-me sobre como encontrar o banheiro mais próximo, portões menos cheios, opções de transporte ou políticas do estádio.",
+            "fallback_chat": f"Olá {name}! Sou o Unity26, seu companheiro da Copa do Mundo FIFA 2026. A temperatura atual do estádio é {temp}°C.\n\nPergunte-me sobre como encontrar o banheiro mais próximo, portões menos cheios, opções de transporte ou políticas do estádio.",
             "wheelchair": "♿ Acessível para cadeira de rodas",
             "density": "Densidade da multidão"
         },
         "fr": {
-            "title": "⚽ **Setu Companion — Mode de Secours en Direct**",
+            "title": "⚽ **Unity26 Companion — Mode de Secours en Direct**",
             "gates_header": "🗺️ **Portes Recommandées:**",
             "warnings_header": "⚠️ **Consignes de Sécurité:**",
             "amenity_header": "📍 **Emplacement du Service le plus Proche:**",
             "transit_header": "🚌 **Transport et Transit:**",
             "policies_header": "📖 **Directives Oficielles du Stade:**",
-            "fallback_chat": f"Bonjour {name}! Je suis Setu, votre compagnon de la Coupe du Monde de la FIFA 2026. La température actuelle du stade est de {temp}°C.\n\nDemandez-moi pour trouver les toilettes les plus proches, les portes les moins encombrées, les options de transport ou les politiques du stade.",
+            "fallback_chat": f"Bonjour {name}! Je suis Unity26, votre compagnon de la Coupe du Monde de la FIFA 2026. La température actuelle du stade est de {temp}°C.\n\nDemandez-moi pour trouver les toilettes les plus proches, les portes les moins encombrées, les options de transport ou les politiques du stade.",
             "wheelchair": "♿ Accessible en fauteuil roulant",
             "density": "Densité de la foule"
         },
         "ar": {
-            "title": "⚽ **مرافق سيتو ليوم المباراة — وضع النسخ الاحتياطي المباشر**",
+            "title": "⚽ **مرافق يونيتي 26 ليوم المباراة — وضع النسخ الاحتياطي المباشر**",
             "gates_header": "🗺️ **البوابات الموصى بها:**",
             "warnings_header": "⚠️ **تنبيه السلامة:**",
             "amenity_header": "📍 **موقع الخدمة الأقرب:**",
             "transit_header": "🚌 **النقل والمواصلات:**",
             "policies_header": "📖 **إرشادات الاستاد الرسمية:**",
-            "fallback_chat": f"مرحباً {name}! أنا سيتو، مرافقك في كأس العالم FIFA 2026. درجة حرارة الاستاد الحالية هي {temp} درجة مئوية.\n\nاسألني عن موقع أقرب دورة مياه، أو البوابات الأقل ازدحاماً، أو خيارات النقل، أو سياسات الاستاد.",
+            "fallback_chat": f"مرحباً {name}! أنا يونيتي 26، مرافقك في كأس العالم FIFA 2026. درجة حرارة الاستاد الحالية هي {temp} درجة مئوية.\n\nاسألني عن موقع أقرب دورة مياه، أو البوابات الأقل ازدحاماً، أو خيارات النقل، أو سياسات الاستاد.",
             "wheelchair": "♿ متاح للكراسي المتحركة",
             "density": "كثافة الحشد"
         }

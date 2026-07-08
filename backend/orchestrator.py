@@ -1,5 +1,5 @@
 """
-orchestrator.py — Central orchestration loop for Setu.
+orchestrator.py — Central orchestration loop for Unity26.
 
 Routes between the specialised agents in a single deterministic pipeline:
   1. Router Agent   (Gemini call #1 — classifies intent)
