@@ -74,14 +74,13 @@ async def classify(query: str, fan_profile: dict) -> dict:
     Send the user query + fan context to Gemini and return structured
     router output.  Falls back to ``general_chat`` on any failure.
     """
-    model = _get_model()
-
     user_message = (
         f"Fan profile: {json.dumps(fan_profile)}\n"
         f"User query: {query}"
     )
 
     try:
+        model = _get_model()
         response = model.generate_content(
             [
                 {"role": "user", "parts": [{"text": _SYSTEM_PROMPT}]},

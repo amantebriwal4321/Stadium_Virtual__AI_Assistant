@@ -198,11 +198,11 @@ async def generate_response(context: dict, language: str = "en") -> str:
     """
     Generate a non-streaming response (used for trace logging / testing).
     """
-    model = _get_model()
     system = _build_system_prompt(language)
     user_msg = f"Context for your response:\n```json\n{json.dumps(context, ensure_ascii=False, indent=2)}\n```"
 
     try:
+        model = _get_model()
         response = model.generate_content(
             [
                 {"role": "user", "parts": [{"text": system}]},
@@ -220,11 +220,11 @@ async def generate_response_stream(context: dict, language: str = "en") -> Async
     Stream the response token-by-token via Gemini's streaming API.
     Yields text chunks as they arrive.
     """
-    model = _get_model()
     system = _build_system_prompt(language)
     user_msg = f"Context for your response:\n```json\n{json.dumps(context, ensure_ascii=False, indent=2)}\n```"
 
     try:
+        model = _get_model()
         response = model.generate_content(
             [
                 {"role": "user", "parts": [{"text": system}]},
